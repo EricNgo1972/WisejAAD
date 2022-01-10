@@ -17,21 +17,21 @@ namespace WisejAAD
             if (!Request.IsAuthenticated)
             {
                 HttpContext.Current.GetOwinContext().Authentication.Challenge(
-                    new AuthenticationProperties { RedirectUri = "/" },
+                    new AuthenticationProperties { RedirectUri = "http://localhost:58588" },
                     OpenIdConnectAuthenticationDefaults.AuthenticationType);
             }
             else
             {
                 var usr = Context.User.Identity.Name;
                 
-                Response.Redirect("/");
+                Response.Redirect("http://localhost:58588");
             }
         }
 
         protected void Logout_Click(object sender, EventArgs e)
         {
             // Redirect to ~/Account/SignOut after signing out.
-            string callbackUrl = Request.Url.GetLeftPart(UriPartial.Authority) + Response.ApplyAppPathModifier("~/");
+            string callbackUrl = "http://localhost:58588";//Request.Url.GetLeftPart(UriPartial.Authority) + Response.ApplyAppPathModifier("~/");
 
             HttpContext.Current.GetOwinContext().Authentication.SignOut(
                 new AuthenticationProperties { RedirectUri = callbackUrl },

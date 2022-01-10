@@ -20,7 +20,7 @@ namespace WisejAAD
         private void DoLogout()
         {
             // Redirect to ~/Account/SignOut after signing out.
-            string callbackUrl = Request.Url.GetLeftPart(UriPartial.Authority) + Response.ApplyAppPathModifier("~/");
+            string callbackUrl = "http://localhost:58588";// Request.Url.GetLeftPart(UriPartial.Authority) + Response.ApplyAppPathModifier("~/");
 
             HttpContext.Current.GetOwinContext().Authentication.SignOut(
                 new AuthenticationProperties { RedirectUri = callbackUrl },

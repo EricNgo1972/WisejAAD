@@ -14,12 +14,12 @@ namespace WisejAAD
 
         private void button1_Click(object sender, EventArgs e)
         {
-			Wisej.Web.Application.Navigate("Login.aspx");
+			Wisej.Web.Application.Navigate("https://localhost:44386/Login.aspx");
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-			Wisej.Web.Application.Navigate("Logout.aspx");
+			Wisej.Web.Application.Navigate("https://localhost:44386/Logout.aspx");
 		}
     }
 }
