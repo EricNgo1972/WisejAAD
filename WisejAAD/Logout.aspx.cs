@@ -14,16 +14,23 @@ namespace WisejAAD
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DoLogout();
+            var root = Request.Url.ToString().Replace(Request.RawUrl, "");            
+                        
+            if (Request.IsAuthenticated)
+                DoLogout(root);
+            else
+            {
+                var usr = Context.User.Identity.Name;
+                Response.Redirect(root);
+            }
+
+
         }
 
-        private void DoLogout()
-        {
-            // Redirect to ~/Account/SignOut after signing out.
-            string callbackUrl = "http://localhost:58588";// Request.Url.GetLeftPart(UriPartial.Authority) + Response.ApplyAppPathModifier("~/");
-
+        private void DoLogout(string pRedirect)
+        {            
             HttpContext.Current.GetOwinContext().Authentication.SignOut(
-                new AuthenticationProperties { RedirectUri = callbackUrl },
+                new AuthenticationProperties { RedirectUri = pRedirect },
                 OpenIdConnectAuthenticationDefaults.AuthenticationType,
                 CookieAuthenticationDefaults.AuthenticationType);
         }

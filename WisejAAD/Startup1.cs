@@ -15,9 +15,9 @@ namespace WisejAAD
     public class Startup1
     {
 
+        private static string tenantId = ConfigurationManager.AppSettings["ida:TenantId"];
         private static string clientId = ConfigurationManager.AppSettings["ida:ClientId"];
         private static string aadInstance = EnsureTrailingSlash(ConfigurationManager.AppSettings["ida:AADInstance"]);
-        private static string tenantId = ConfigurationManager.AppSettings["ida:TenantId"];
         private static string postLogoutRedirectUri = ConfigurationManager.AppSettings["ida:PostLogoutRedirectUri"];
 
         string authority = aadInstance + tenantId;
